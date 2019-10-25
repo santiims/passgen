@@ -15,7 +15,6 @@
 using namespace std;
 
 //Feature request - store passwords in encrypted format
-//Feature request - retrieve a password from the encrypted format as root user
 //Feature request - have passwords use non-alphanumeric characters
 
 int main(int argc, char **argv)
@@ -34,6 +33,11 @@ int main(int argc, char **argv)
 	whatIsThisPasswordFor = argv[1];
 
 	PasswordGenerator* passwordGenerator = new PasswordGenerator(whatIsThisPasswordFor, passwordLength);
+
+	if (passwordGenerator->findPassword()) {
+		passwordGenerator->printToConsole();
+		return 0;
+	}
 
 	passwordGenerator->generatePassword();
 

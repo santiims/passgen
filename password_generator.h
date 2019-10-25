@@ -18,6 +18,11 @@
 #include <iostream>
 #endif
 
+#ifndef STRING
+#define STRING
+#include <string>
+#endif
+
 #ifndef PASSWORD_GENERATOR_H
 #define PASSWORD_GENERATOR_H
 
@@ -35,6 +40,37 @@ public:
 		this->whatIsThisPasswordFor = whatIsThisPasswordFor;
 		this->password = "";
 		this->passwordLength = passwordLength;
+	}
+
+	bool findPassword(std::string fileName = "passwords")
+	{
+		std::string identifier = "";
+		std::string line;
+		std::ifstream fin;
+		fin.open(fileName);
+		if (!fin) {
+			return false;
+		}
+		getline(fin, line);
+
+		while (fin.eof() == false) {
+			int i;
+			for (i = 0; line[i] != ' '; i++) {
+				identifier += line[i];
+			}
+			if (identifier == this->whatIsThisPasswordFor) {
+				for (++i; line[i] != '\0'; i++){
+					this->password += line[i];
+				}
+				return true;
+			}
+			identifier = "";
+			getline(fin, line);
+		}
+
+		fin.close();
+
+		return false;
 	}
 
 	void generatePassword()
