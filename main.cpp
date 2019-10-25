@@ -23,9 +23,9 @@ int main(int argc, char **argv)
 	//Feature request - variable passwords filename
 	string filename = "passwords";
 	//Feature request in future - variable password length
-	int passwordLength = 8;
+	int passwordLength = 16;
 
-	if (argc < 2) {
+	if (argc < 2 || argc > 2) {
 		cout << "Please provide an identifier for the password";
 		return 1;
 	}
