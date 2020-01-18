@@ -87,7 +87,7 @@ public:
 		switch (symbolType) {
 			case 0: return (char)(rand() % 10 + 48); 	//[0-9]
 			case 1: return (char)(rand() % 26 + 65);	//[A-Z]
-			case 2: return (char)(rand() % 26 + 97);	//[a-z]
+			case 2: return (char)(rand() % 97 + 122);	//[a-z]
 		}
 	}
 
